@@ -14,6 +14,15 @@ class App extends Component {
     this.state = {
       list: list
     }
+
+    //bind the functions to this (app component)
+    this.removeItem = this.removeItem.bind(this)
+
+  }
+
+  // remove item function
+  removeItem(id) {
+    console.log(id)
   }
 
   render() {
@@ -24,6 +33,8 @@ class App extends Component {
             <div key={item.objectID}>
               <h1><a href={item.url}>{item.title}</a> by {item.author}</h1>
               <h4>{item.num_comments} Comments | {item.points} Points</h4>
+              {/* to use this keyword, use arrow function not the old function */}
+              <button type="button" onClick={() => this.removeItem(item.objectID)}>Remove</button>
             </div>
           )
         }
