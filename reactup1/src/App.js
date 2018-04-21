@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Grid, Row, FormGroup, FormControl} from 'react-bootstrap';
-import './App.css';
+//import './App.css';
 import list from './list'
 
 // filter the results by search
@@ -41,11 +41,11 @@ class App extends Component {
   render() {
     const {list, searchTerm} = this.state;
     return (
-      <div className="App">
+      <div>
         
         <Grid fluid>
           <Row>
-            <div className="jumbotron">
+            <div className="jumbotron text-center">
               <Search 
                 onChange={this.searchValue} 
                 value={searchTerm} 
@@ -91,16 +91,18 @@ const Search = ({onChange, value, children}) => {
 
 const Table = ({list, searchTerm, removeItem}) => {
   return (
-    <div>
+    <div className="col-sm-10 col-sm-offset-1">
       {
         list.filter(isSearched(searchTerm)).map(item =>
           <div key={item.objectID}>
-            <h1><a href={item.url}>{item.title}</a> by {item.author}</h1>
-            <h4>{item.num_comments} Comments | {item.points} Points</h4>
-            <Button
-              type="button"
-              onClick={() => removeItem(item.objectID)}
-            >Remove</Button>
+            <h1><a href={item.url}>{item.title}</a></h1>
+            <h4>
+            {item.author} | {item.num_comments} Comments | {item.points} Points
+              <Button
+                onClick={() => removeItem(item.objectID)}
+                className="btn btn-warning btn-xs"
+              >Remove</Button>
+            </h4> <hr/>
           </div>
         )
       }
@@ -108,8 +110,11 @@ const Table = ({list, searchTerm, removeItem}) => {
   )
 }
 
-const Button = ({type, onClick, children}) => 
-  <button type={type} onClick={onClick}>{children}
+const Button = ({onClick, children, className=''}) => 
+  <button 
+    onClick={onClick}
+    className={className}
+  >{children}
   </button>
 
 
