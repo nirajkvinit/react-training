@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-
 import list from './list'
+
+// filter the results by search
+// Higher order function is function which returns another function 
+function isSearched(searchTerm) {
+  return function(item) {
+    return !searchTerm || item.title.toLowerCase().includes(searchTerm.toLowerCase())
+  }
+}
 
 class App extends Component {
   // setting up internal component state
@@ -11,7 +18,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      list: list
+      list: list,
+      searchTerm: ''
     }
 
     //bind the functions to this (app component)
@@ -25,7 +33,6 @@ class App extends Component {
   }
 
   //get input field value from search form
-
   searchValue(event) {
     this.setState({searchTerm: event.target.value})
   }
@@ -34,10 +41,10 @@ class App extends Component {
     return (
       <div className="App">
         <form>
-          <input type="text" onChange={ this.searchvalue } />
+          <input type="text" onChange={this.searchValue} />
         </form>
         {
-          this.state.list.map(item =>
+          this.state.list.filter(isSearched(this.state.searchTerm)).map(item =>
             <div key={item.objectID}>
               <h1><a href={item.url}>{item.title}</a> by {item.author}</h1>
               <h4>{item.num_comments} Comments | {item.points} Points</h4>
