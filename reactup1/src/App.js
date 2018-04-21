@@ -9,14 +9,12 @@ class App extends Component {
     return (
       <div className="App">
         {
-          list.map(function(item){
-            return (
-              <div key={item.objectID}>
-                <h1><a href={item.url}>{item.title}</a> by {item.author}</h1>
-                <h4>{item.num_comments} Comments | {item.points} Points</h4>
-              </div>
-            )
-          })
+          list.map(item =>
+            <div key={item.objectID}>
+              <h1><a href={item.url}>{item.title}</a> by {item.author}</h1>
+              <h4>{item.num_comments} Comments | {item.points} Points</h4>
+            </div>
+          )
         }
       </div>
     );
