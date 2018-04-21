@@ -57,56 +57,37 @@ class App extends Component {
   }
 }
 
-class Search extends Component {
-  render() {
-    const {onChange, value, children} = this.props
-    return (
-      <form>
-        {children}
-          <input 
-            type="text"
-            onChange = {onChange}
-            value = {value}
-          />
-      </form>
-    )
-  }
+const Search = ({onChange, value, children}) => {
+  return (
+    <form>
+      {children}
+        <input 
+          type="text"
+          onChange = {onChange}
+          value = {value}
+        />
+    </form>
+  )
 }
 
-class Table extends Component {
-  render() {
-    const {list, searchTerm, removeItem} = this.props
-    return (
-      <div>
-        {
-          list.filter(isSearched(searchTerm)).map(item =>
-            <div key={item.objectID}>
-              <h1><a href={item.url}>{item.title}</a> by {item.author}</h1>
-              <h4>{item.num_comments} Comments | {item.points} Points</h4>
-              <Button
-                type="button"
-                onClick={() => removeItem(item.objectID)}
-              >Remove</Button>
-            </div>
-          )
-        }
-      </div>
-    )
-  }
+const Table = ({list, searchTerm, removeItem}) => {
+  return (
+    <div>
+      {
+        list.filter(isSearched(searchTerm)).map(item =>
+          <div key={item.objectID}>
+            <h1><a href={item.url}>{item.title}</a> by {item.author}</h1>
+            <h4>{item.num_comments} Comments | {item.points} Points</h4>
+            <Button
+              type="button"
+              onClick={() => removeItem(item.objectID)}
+            >Remove</Button>
+          </div>
+        )
+      }
+    </div>
+  )
 }
-
-
-// function Button({type, onClick, children}) {
-//   return (
-//     <button type={type} onClick={onClick}>{children}</button>
-//   )
-// }
-
-//const Button = ({type, onClick, children}) => <button type={type} onClick={onClick}>{children}</button>
-
-// const Button = ({type, onClick, children}) => {
-//   return <button type={type} onClick={onClick}>{children}</button>
-// }
 
 const Button = ({type, onClick, children}) => 
   <button type={type} onClick={onClick}>{children}
