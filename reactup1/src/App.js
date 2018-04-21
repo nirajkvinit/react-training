@@ -2,34 +2,16 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="App-title">Welcome to React app development!</h1>
-      </header>
-      <p className="App-intro">
-        This is a test!
-      </p>
-    </div>
-  );
-}
+let paragraph = "This is a sample paragraph.";
 
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <h1 className="App-title">Welcome to React app development!</h1>
-//         </header>
-//         <p className="App-intro">
-//           To get started, edit <code>src/App.js</code> and save to reload.
-//         </p>
-//       </div>
-//     );
-//   }
-// }
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <h1>{ paragraph }</h1>
+      </div>
+    );
+  }
+}
 
 export default App;
