@@ -83,11 +83,23 @@ class Table extends Component {
             <div key={item.objectID}>
               <h1><a href={item.url}>{item.title}</a> by {item.author}</h1>
               <h4>{item.num_comments} Comments | {item.points} Points</h4>
-              <button type="button" onClick={() => removeItem(item.objectID)}>Remove</button>
+              <Button
+                type="button"
+                onClick={() => removeItem(item.objectID)}
+              >Remove</Button>
             </div>
           )
         }
       </div>
+    )
+  }
+}
+
+class Button extends Component {
+  render() {
+    const {type, onClick, children} = this.props;
+    return (
+      <button type={type} onClick={onClick}>{children}</button>
     )
   }
 }
