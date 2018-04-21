@@ -47,16 +47,11 @@ class App extends Component {
           value={searchTerm} 
         />
 
-        {
-          list.filter(isSearched(searchTerm)).map(item =>
-            <div key={item.objectID}>
-              <h1><a href={item.url}>{item.title}</a> by {item.author}</h1>
-              <h4>{item.num_comments} Comments | {item.points} Points</h4>
-              {/* to use this keyword, use arrow function not the old function */}
-              <button type="button" onClick={() => this.removeItem(item.objectID)}>Remove</button>
-            </div>
-          )
-        }
+        <Table 
+          list={list}
+          searchTerm={searchTerm}
+          removeItem={this.removeItem}
+        />
       </div>
     );
   }
@@ -73,6 +68,25 @@ class Search extends Component {
             value = {value}
           />
       </form>
+    )
+  }
+}
+
+class Table extends Component {
+  render() {
+    const {list, searchTerm, removeItem} = this.props
+    return (
+      <div>
+        {
+          list.filter(isSearched(searchTerm)).map(item =>
+            <div key={item.objectID}>
+              <h1><a href={item.url}>{item.title}</a> by {item.author}</h1>
+              <h4>{item.num_comments} Comments | {item.points} Points</h4>
+              <button type="button" onClick={() => removeItem(item.objectID)}>Remove</button>
+            </div>
+          )
+        }
+      </div>
     )
   }
 }
