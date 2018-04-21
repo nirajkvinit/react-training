@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import list from './list'
@@ -17,38 +16,26 @@ class App extends Component {
 
     //bind the functions to this (app component)
     this.removeItem = this.removeItem.bind(this)
-
+    this.searchValue = this.searchValue.bind(this)
   }
-
-  // remove item function
-  /*removeItem(id) {
-    console.log(id)
-    //using javascript filter method
-    // we can filter out the clicked item and render the updated list
-    function isNotId(item) {
-      return item.objectID !== id
-    }
-    // create a new updated list
-    const updatedList = this.state.list.filter(isNotId)    
-
-    //assign the new updated list to the list using setState method
-    this.setState({list: updatedList})    
-  }*/
-
-  /*removeItem(id) {
-    const isNotId = item => item.objectID !== id
-    const updatedList = this.state.list.filter(isNotId)
-    this.setState({list: updatedList})
-  }*/
 
   removeItem(id) {
     const updatedList = this.state.list.filter(item => item.objectID !== id)
     this.setState({list: updatedList})
   }
 
+  //get input field value from search form
+
+  searchValue(event) {
+    this.setState({searchTerm: event.target.value})
+  }
+
   render() {
     return (
       <div className="App">
+        <form>
+          <input type="text" onChange={ this.searchvalue } />
+        </form>
         {
           this.state.list.map(item =>
             <div key={item.objectID}>
