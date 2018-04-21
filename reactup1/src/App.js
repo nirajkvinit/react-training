@@ -95,13 +95,22 @@ class Table extends Component {
   }
 }
 
-class Button extends Component {
-  render() {
-    const {type, onClick, children} = this.props;
-    return (
-      <button type={type} onClick={onClick}>{children}</button>
-    )
-  }
-}
+
+// function Button({type, onClick, children}) {
+//   return (
+//     <button type={type} onClick={onClick}>{children}</button>
+//   )
+// }
+
+//const Button = ({type, onClick, children}) => <button type={type} onClick={onClick}>{children}</button>
+
+// const Button = ({type, onClick, children}) => {
+//   return <button type={type} onClick={onClick}>{children}</button>
+// }
+
+const Button = ({type, onClick, children}) => 
+  <button type={type} onClick={onClick}>{children}
+  </button>
+
 
 export default App;
