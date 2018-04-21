@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Grid, Row} from 'react-bootstrap';
 import './App.css';
 import list from './list'
 
@@ -42,10 +43,16 @@ class App extends Component {
     return (
       <div className="App">
         
-        <Search 
-          onChange={this.searchValue} 
-          value={searchTerm} 
-        >Search Here</Search>
+        <Grid>
+          <Row>
+            <div className="jumbotron">
+              <Search 
+                onChange={this.searchValue} 
+                value={searchTerm} 
+              >Search Here</Search>
+            </div>
+          </Row>  
+        </Grid>
 
         <Table 
           list={list}
