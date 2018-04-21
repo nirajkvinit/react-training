@@ -23,6 +23,17 @@ class App extends Component {
   // remove item function
   removeItem(id) {
     console.log(id)
+    //using javascript filter method
+    // we can filter out the clicked item and render the updated list
+    // function isNotId(item) {
+    //   return item.objectID !== id
+    // }
+    // create a new updated list
+    //const updatedList = this.state.list.filter(isNotId)
+    const updatedList = this.state.list.filter(item => item.objectID !== id)
+
+    //assign the new updated list to the list using setState method
+    this.setState({list: updatedList})    
   }
 
   render() {
